@@ -695,8 +695,8 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
       host.appendChild(p);
       return p;
     }
-    var baseEl = mkPath('fa-lp-base', Math.max(2.5, cw * 0.9));
-    if (dash && dash !== '0') baseEl.setAttribute('stroke-dasharray', dash);
+    /* base rail is always solid — a dashed rail reads as broken/messy */
+    mkPath('fa-lp-base', Math.max(2.5, cw * 0.9));
     /* Soft glow = wide low-opacity stroke. No SVG blur filter here: a filter
        surface as tall as the whole document would be far too expensive, and
        the meander keeps a ≥14px pad from content so the wide stroke (≤9px

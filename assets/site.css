@@ -1893,6 +1893,9 @@ mjx-container { overflow-x: auto; max-width: 100%; display: block; }
   z-index: -1;            /* behind ALL content (above #fa-glow at -2 and the body canvas) */
   pointer-events: none;
   contain: layout paint;
+  /* taper the rail at the band ends so it never stops abruptly above the footer */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 5%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 5%, #000 94%, transparent 100%);
 }
 /* Continuous soft accent rail — makes the whole route (incl. its start, just
    below the header) visible; the comet rides on top as the bright highlight.
