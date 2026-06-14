@@ -193,7 +193,7 @@ img, iframe { max-width: 100%; border: 0; }
   margin-bottom: 1.4rem;
 }
 .mh-breadcrumb a { color: var(--ink3); }
-.mh-breadcrumb a:hover { color: color-mix(in srgb, var(--AC) 80%, var(--ink)); text-decoration: underline; }
+.mh-breadcrumb a:hover { color: color-mix(in srgb, var(--AC) 58%, var(--ink)); text-decoration: underline; }
 .mh-tag {
   display: inline-block;
   font-family: 'Inter', sans-serif;
@@ -201,7 +201,7 @@ img, iframe { max-width: 100%; border: 0; }
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--AC) 70%, var(--ink));
+  color: color-mix(in srgb, var(--AC) 55%, var(--ink));
   background: color-mix(in srgb, var(--AC) 10%, var(--card));
   border: 1px solid color-mix(in srgb, var(--AC) 35%, var(--border));
   padding: .3rem .95rem;
@@ -219,7 +219,7 @@ img, iframe { max-width: 100%; border: 0; }
   color: var(--ink);
   text-shadow: 0 2px 26px var(--ACglow);
 }
-.mh-title .acc { color: color-mix(in srgb, var(--AC) 80%, var(--ink)); }
+.mh-title .acc { color: color-mix(in srgb, var(--AC) 58%, var(--ink)); }
 .mh-sub {
   color: var(--ink2);
   font-style: italic;
@@ -255,7 +255,7 @@ img, iframe { max-width: 100%; border: 0; }
 .mh-pill:hover {
   background: #fff;
   border-color: color-mix(in srgb, var(--AC) 70%, var(--border));
-  color: color-mix(in srgb, var(--AC) 75%, var(--ink));
+  color: color-mix(in srgb, var(--AC) 58%, var(--ink));
 }
 
 /* Course-page emblem: the banner SVG framed as a contained plaque */
@@ -899,7 +899,7 @@ body.global-unmarked .iq.right,.iq.wrong             { display: none; }
   font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: 1.3rem;
   font-weight: 800;
-  color: color-mix(in srgb, var(--AC) 68%, var(--ink));
+  color: color-mix(in srgb, var(--AC) 60%, var(--ink));
   font-style: normal;
   display: inline-block;
   margin-bottom: .65rem;
@@ -1394,17 +1394,17 @@ mjx-container { overflow-x: auto; max-width: 100%; display: block; }
 .pill:hover {
   background: #fff;
   border-color: color-mix(in srgb, var(--AC) 70%, var(--border));
-  color: color-mix(in srgb, var(--AC) 75%, var(--ink));
+  color: color-mix(in srgb, var(--AC) 58%, var(--ink));
 }
 .pill-overview, .pill-review {
   background: color-mix(in srgb, var(--AC) 12%, var(--card));
   border-color: color-mix(in srgb, var(--AC) 45%, var(--border));
-  color: color-mix(in srgb, var(--AC) 70%, var(--ink));
+  color: color-mix(in srgb, var(--AC) 55%, var(--ink));
   font-weight: 700;
 }
 .pill.active {
-  background: color-mix(in srgb, var(--AC) 80%, #1a1208);
-  border-color: color-mix(in srgb, var(--AC) 80%, #1a1208);
+  background: color-mix(in srgb, var(--AC) 58%, #1a1208);
+  border-color: color-mix(in srgb, var(--AC) 58%, #1a1208);
   color: #fff;
   font-weight: 700;
   box-shadow: 0 4px 14px -8px var(--ACglow);
@@ -1497,7 +1497,7 @@ mjx-container { overflow-x: auto; max-width: 100%; display: block; }
 .sidebar-toggle:hover {
   background: #fff;
   border-color: color-mix(in srgb, var(--AC) 70%, var(--border));
-  color: color-mix(in srgb, var(--AC) 75%, var(--ink));
+  color: color-mix(in srgb, var(--AC) 58%, var(--ink));
 }
 /* make masthead relative so toggle can be positioned */
 .masthead { position: relative; }
