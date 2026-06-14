@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Light &amp; Waves: Personal Study Guide | Five &amp; A+</title>
+<link href="../assets/site.css?v=20260614" rel="stylesheet"/>
+<script>MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]]},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}}</script>
+<script async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+ /* Personal study guide additions: keep theme aligned with site */
+ .sg-callout { background:var(--bg3); border:1px solid var(--border); border-left:3px solid var(--AC); border-radius:6px; padding:.85rem 1rem; margin:.7rem 0; font-size:13.5px; color:var(--text2); line-height:1.7; }
+ .sg-callout b { color:var(--text); }
+ .sg-warn { border-left-color:#f87171; background:rgba(248,113,113,.05); }
+ .sg-warn b { color:#fca5a5; }
+ .sg-win { border-left-color:#4ade80; background:rgba(74,222,128,.05); }
+ .sg-win b { color:#86efac; }
+ .sg-gold { border-left-color:var(--gold); background:rgba(245,158,11,.05); }
+ .sg-gold b { color:#fcd34d; }
+ .sg-mistake { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:1rem 1.1rem; margin-bottom:1rem; }
+ .sg-mistake h5 { font-family:'Comfortaa',sans-serif; font-size:.95rem; font-weight:800; color:#fca5a5; margin-bottom:.5rem; letter-spacing:-.01em; }
+ .sg-mistake .yours { color:#f87171; font-family:'Comfortaa',monospace; font-size:11px; }
+ .sg-mistake .actual { color:#86efac; font-family:'Comfortaa',monospace; font-size:11px; }
+ .sg-mistake p { font-size:13.5px; color:var(--text2); line-height:1.7; margin:.4rem 0; }
+ .sg-mistake p b { color:var(--text); }
+ .sg-checklist { background:var(--bg3); border:1px solid var(--border); border-radius:6px; padding:.9rem 1.1rem; }
+ .sg-checklist li { list-style:none; padding:.4rem 0 .4rem 1.7rem; position:relative; font-size:13.5px; color:var(--text2); border-bottom:1px solid var(--border); line-height:1.6; }
+ .sg-checklist li:last-child { border-bottom:none; }
+ .sg-checklist li::before { content:'☐'; position:absolute; left:0; top:.35rem; color:var(--AC); font-size:14px; font-weight:700; }
+ .sg-checklist li b { color:var(--text); }
+ .sg-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+ @media(max-width:640px){ .sg-grid2 { grid-template-columns:1fr; } }
+ .sg-table { width:100%; border-collapse:collapse; font-size:13px; margin:.5rem 0; }
+ .sg-table th, .sg-table td { border:1px solid var(--border); padding:.5rem .65rem; text-align:left; vertical-align:top; }
+ .sg-table th { background:var(--bg3); color:var(--AC); font-family:'Comfortaa',monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; }
+ .sg-table td { color:var(--text2); }
+ .sg-table td b { color:var(--text); }
+ .sg-model { background:var(--bg3); border:1px solid var(--border); border-left:3px solid var(--gold); border-radius:6px; padding:.9rem 1.1rem; margin:.7rem 0; font-size:13.5px; color:var(--text2); line-height:1.75; }
+ .sg-model .label { font-family:'Comfortaa',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:.4rem; }
+ .sg-model b { color:var(--text); }
+ .sg-q { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:1rem 1.1rem; margin-bottom:.8rem; }
+ .sg-q .qnum { font-family:'Comfortaa',monospace; font-size:10px; color:var(--text3); letter-spacing:.07em; margin-bottom:.4rem; }
+ .sg-q .qtext { font-size:14px; color:var(--text); line-height:1.7; margin-bottom:.6rem; font-weight:500; }
+ .sg-q .qopts { list-style:none; display:flex; flex-direction:column; gap:.3rem; margin-bottom:.6rem; }
+ .sg-q .qopts li { padding:.45rem .75rem; background:var(--bg); border:1px solid var(--border); border-radius:4px; font-size:13px; color:var(--text2); line-height:1.5; }
+ .sg-q details { font-size:13px; color:var(--text2); background:rgba(74,222,128,.06); border:1px solid rgba(74,222,128,.3); border-radius:4px; padding:.5rem .75rem; cursor:pointer; }
+ .sg-q details summary { color:#86efac; font-family:'Comfortaa',monospace; font-size:11px; letter-spacing:.05em; }
+ .sg-q details[open] summary { margin-bottom:.5rem; }
+ .sg-q details p { line-height:1.7; padding:.3rem 0; }
+ .sg-q details b { color:var(--text); }
+ .vocab-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:.6rem; }
+ .vocab-grid div { background:var(--bg3); border:1px solid var(--border); border-radius:4px; padding:.55rem .75rem; font-size:12.5px; color:var(--text2); }
+ .vocab-grid div b { color:var(--AC); display:block; margin-bottom:.2rem; font-size:12.5px; }
+ .roygbiv { display:flex; gap:.25rem; margin:.5rem 0; font-family:'Comfortaa',monospace; font-size:11px; text-align:center; }
+ .roygbiv div { flex:1; padding:.5rem .25rem; border-radius:3px; color:#000; font-weight:700; }
+ .anchor-toc { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:.9rem 1rem; margin-bottom:1.5rem; }
+ .anchor-toc h4 { font-family:'Comfortaa',monospace; font-size:11px; color:var(--AC); letter-spacing:.1em; text-transform:uppercase; margin-bottom:.6rem; }
+ .anchor-toc ol { padding-left:1.25rem; }
+ .anchor-toc li { font-size:13px; color:var(--text2); padding:.18rem 0; }
+ .anchor-toc a { color:var(--text2); }
+ .anchor-toc a:hover { color:var(--AC); }
+ .sg-formula { background:var(--bg3); border:1px solid var(--border); border-radius:6px; padding:.75rem 1rem; margin:.6rem 0; }
+ .sg-formula h6 { font-family:'Comfortaa',sans-serif; font-size:.85rem; font-weight:800; color:var(--AC); margin-bottom:.35rem; }
+ .sg-formula .vars { font-size:12.5px; color:var(--text3); margin-top:.35rem; line-height:1.7; }
+ .sg-formula .vars b { color:var(--text); }
+ .sg-formula .use { font-size:12.5px; color:var(--text2); margin-top:.3rem; line-height:1.7; font-style:italic; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+</head>
+<body style="--AC:#059669;--ACfaint:rgba(5,150,105,0.08);">
+<nav class="topnav">
+<a class="nav-brand-link" href="../index.html">Five &amp; A+</a>
+<a href="../index.html">← Hub</a>
+<a href="../courses/ap-physics-1-2-overview.html">← AP® Physics 1 &amp; 2</a>
+</nav>
+<div class="masthead">
+<div class="mh-inner">
+<p class="mh-breadcrumb"><a href="../index.html">Hub</a> / Personal Study Guide / Light &amp; Waves</p>
+<p class="mh-tag">Targeted prep, built from your quizzes</p>
+<h1 class="mh-title">Light &amp; Waves: Study for a 100</h1>
+<p class="mh-sub">Concise, complete, and focused on the patterns Ms. Scarpulla actually tests. Start from the foundation, build to test-level thinking, then hunt every weak spot.</p>
+<div class="mh-pills">
+<span class="mh-pill">Waves Quiz: 9/10</span>
+<span class="mh-pill">Light Quiz: 8/10</span>
+<span class="mh-pill">Target: 10/10</span>
+</div>
+</div>
+</div>
+<div class="page-wrap">
+<div class="anchor-toc">
+<h4>What's inside</h4>
+<ol>
+<li><a href="#section1">Must-Know Concepts</a>: every fundamental, explained from zero</li>
+<li><a href="#section2">Formula Sheet With Meaning</a>: every equation + when to use it</li>
+<li><a href="#section3">Patterns to Recognize</a>: what the test is actually asking</li>
+<li><a href="#section4">Your Quiz Mistakes</a>: exactly what went wrong + how to fix it</li>
+<li><a href="#section5">Teacher-Style Practice</a>: questions in Scarpulla's format</li>
+<li><a href="#section6">Quick Review Before Test</a>: night-before checklist</li>
+<li><a href="#section7">Short Answer Checklist</a>: full-credit structure</li>
+</ol>
+</div>
+<!-- ─────────────────────────── SECTION 1 ─────────────────────────── -->
+<section class="lesson" id="section1">
+<div class="lesson-head"><label>Section 1</label><h4>Must-Know Concepts</h4></div>
+<div class="lesson-body">
+<div class="topicnote">
+<h5>1.1 What a wave actually is</h5>
+<p>A <b>wave</b> is a vibratory <b>disturbance</b> that travels through a medium or field. It transfers <b>energy</b>, not mass. The medium itself only vibrates in place: a leaf on the ocean bobs up and down, it doesn't ride the wave to shore.</p>
+<p><b>Pulse</b> = a single disturbance. <b>Periodic wave</b> = a regularly repeating disturbance. Both transmit energy.</p>
+</div>
+<div class="topicnote">
+<h5>1.2 Mechanical vs. Electromagnetic waves</h5>
+<table class="sg-table">
+<tr><th>Mechanical</th><th>Electromagnetic (EM)</th></tr>
+<tr>
+<td><b>Need</b> a medium (matter) to travel<br/>Examples: sound, water, springs, earthquake waves<br/>Carried by particle vibrations</td>
+<td><b>Do NOT need</b> a medium: travel through vacuum<br/>Examples: light, radio, microwave, X-rays, UV, IR, gamma<br/>Carried by oscillating electric &amp; magnetic fields</td>
+</tr>
+</table>
+<p><b>Trap:</b> Sound cannot travel through space (no medium). Light can. This shows up on every test as a "which can travel through vacuum?" question.</p>
+</div>
+<div class="topicnote">
+<h5>1.3 Transverse vs. Longitudinal waves</h5>
+<table class="sg-table">
+<tr><th>Transverse</th><th>Longitudinal</th></tr>
+<tr>
+<td>Particle motion is <b>perpendicular</b> to wave direction.<br/>Has <b>crests</b> (max up) and <b>troughs</b> (max down).<br/>Examples: <b>all EM waves</b> (light, radio…), waves on a rope, S-waves.</td>
+<td>Particle motion is <b>parallel</b> to wave direction.<br/>Has <b>compressions</b> (squished) and <b>rarefactions</b> (spread).<br/>Examples: <b>sound</b>, compression in a spring, P-waves.</td>
+</tr>
+</table>
+<div class="sg-callout sg-gold"><b>Pattern shortcut for analogies:</b> "Transverse : light :: longitudinal : sound." If you see this analogy on a test, that's almost always the answer.</div>
+</div>
+<div class="topicnote">
+<h5>1.4 Wave anatomy (vocabulary)</h5>
+<div class="vocab-grid">
+<div><b>Amplitude (A)</b> Maximum displacement from rest position. Measured from equilibrium line to crest (or to trough). NOT peak-to-peak.</div>
+<div><b>Wavelength (λ)</b> Distance between two consecutive points in phase: crest to crest, trough to trough, or compression to compression. Unit: meters.</div>
+<div><b>Frequency (f)</b> Number of complete cycles per second. Unit: Hertz (Hz) = 1/s.</div>
+<div><b>Period (T)</b> Time for one complete cycle. Unit: seconds. T = 1/f.</div>
+<div><b>Speed (v)</b> How fast the wave moves through the medium. v = fλ. Depends only on the medium.</div>
+<div><b>Crest</b> Highest point of a transverse wave.</div>
+<div><b>Trough</b> Lowest point of a transverse wave.</div>
+<div><b>Compression</b> Region of maximum density in a longitudinal wave.</div>
+<div><b>Rarefaction</b> Region of minimum density in a longitudinal wave.</div>
+<div><b>In phase</b> Same point in the cycle, same direction of motion (0° or 360° apart).</div>
+<div><b>180° out of phase</b> Opposite points in the cycle: one going up while the other goes down. ½ wavelength apart.</div>
+<div><b>Node</b> Point in a standing wave that never moves (zero amplitude).</div>
+<div><b>Antinode</b> Point in a standing wave with maximum amplitude.</div>
+</div>
+<p style="margin-top:.6rem"><b>Critical rule on amplitude:</b> amplitude is the distance from the <b>rest line</b> to the peak: NOT from trough to crest. If you see a peak-to-peak distance labeled, amplitude is HALF that number.</p>
+</div>
+<div class="topicnote">
+<h5>1.5 Pulse behavior: what changes vs. what stays</h5>
+<p><b>As a pulse travels in a uniform medium:</b> speed stays constant, amplitude decreases as energy spreads out.</p>
+<p><b>When a pulse hits a boundary / changes mediums:</b></p>
+<ul style="margin-left:1.2rem;color:var(--text2);font-size:13px;line-height:1.8">
+<li><b>Speed</b> may change</li>
+<li><b>Wavelength</b> may change</li>
+<li><b>Amplitude</b> may change</li>
+<li><b>Frequency NEVER changes</b>: frequency is set by the source</li>
+<li>Part of the pulse <b>reflects</b>, part <b>transmits</b>, part is <b>absorbed</b></li>
+</ul>
+</div>
+<div class="topicnote">
+<h5>1.6 Reflection (Law of Reflection)</h5>
+<p>When a wave bounces off a boundary, <b>angle of incidence = angle of reflection</b>, both measured from the <b>normal</b> (a line perpendicular to the surface at the point of contact). \( \theta_i = \theta_r \)</p>
+<p><b>Two types:</b></p>
+<ul style="margin-left:1.2rem;color:var(--text2);font-size:13px;line-height:1.8">
+<li><b>Regular (specular)</b> reflection: smooth surface (mirror). Parallel rays in → parallel rays out. This is how mirrors form images.</li>
+<li><b>Diffuse</b> reflection: rough/irregular surface. Parallel rays in → scattered rays in all directions. This is how you see everyday objects.</li>
+</ul>
+<div class="sg-callout sg-warn"><b>Convention trap:</b> "Angle of reflection = 30°": always measured from the NORMAL, never from the mirror surface. If the diagram labels 60° between the ray and the mirror, the angle from the normal is 30° (since they're complementary, 90° − 60°).</div>
+</div>
+<div class="topicnote">
+<h5>1.7 Refraction (bending of light)</h5>
+<p>Refraction is the <b>bending of a wave when it changes speed</b> as it enters a new medium. Direction change is caused by speed change.</p>
+<p><b>The two-rule pattern (memorize):</b></p>
+<table class="sg-table">
+<tr><th>Going from…</th><th>Speed</th><th>Bends</th><th>Angle of refraction</th></tr>
+<tr><td>Fast (low n) → Slow (high n)</td><td>Decreases</td><td><b>TOWARD normal</b></td><td>Smaller than incidence</td></tr>
+<tr><td>Slow (high n) → Fast (low n)</td><td>Increases</td><td><b>AWAY from normal</b></td><td>Larger than incidence</td></tr>
+</table>
+<p><b>Special case:</b> If the ray enters at 0° (along the normal), no bending happens but speed still changes.</p>
+</div>
+<div class="topicnote">
+<h5>1.8 Index of refraction (n)</h5>
+<p>Defined as: \( n = \dfrac{c}{v} \) where \(c\) = speed of light in vacuum (3.00 × 10⁸ m/s) and \(v\) = speed of light in the material.</p>
+<p><b>Patterns:</b></p>
+<ul style="margin-left:1.2rem;color:var(--text2);font-size:13px;line-height:1.8">
+<li>n is always ≥ 1 (vacuum has n = 1 exactly)</li>
+<li>Bigger n → slower light → more <b>optically dense</b></li>
+<li>n has <b>no units</b> (it's a ratio of two speeds)</li>
+<li>Two materials with the <b>same n</b> → no refraction, ray goes straight through (angle of incidence = angle of refraction)</li>
+</ul>
+<p><b>Common values to know (NYS reference table):</b> Air ≈ 1.00, Water = 1.33, Alcohol/Ethyl = 1.36, Glycerol = 1.47, Corn oil = 1.47, Lucite = 1.50, Crown glass = 1.52, Flint glass = 1.66, Zircon = 1.92, Diamond = 2.42.</p>
+</div>
+<div class="topicnote">
+<h5>1.9 Snell's Law</h5>
+<p>\( n_1 \sin\theta_1 = n_2 \sin\theta_2 \). This is the master equation for refraction. Angles are measured from the normal. Subscript 1 = incident side, 2 = refracted side.</p>
+<p>Equivalent forms (since \(n = c/v\) and \(v = f\lambda\)):</p>
+<p>\( \dfrac{\sin\theta_1}{\sin\theta_2} = \dfrac{n_2}{n_1} = \dfrac{v_1}{v_2} = \dfrac{\lambda_1}{\lambda_2} \)</p>
+</div>
+<div class="topicnote">
+<h5>1.10 Critical angle &amp; Total Internal Reflection (TIR)</h5>
+<p><b>Critical angle</b> = the angle of incidence that produces an angle of refraction of exactly 90°. Formula: \( \sin\theta_c = \dfrac{n_2}{n_1} \) where light goes from medium 1 → medium 2.</p>
+<p><b>TIR requires TWO conditions:</b></p>
+<ul style="margin-left:1.2rem;color:var(--text2);font-size:13px;line-height:1.8">
+<li>Light traveling from <b>denser → less dense</b> (high n → low n)</li>
+<li>Angle of incidence <b>greater than</b> the critical angle</li>
+</ul>
+<p>If both happen: no light refracts out: 100% reflects back. Used in <b>fiber optics</b>, prisms in binoculars, periscopes.</p>
+</div>
+<div class="topicnote">
+<h5>1.11 Diffraction</h5>
+<p>Waves spread out when they pass through an opening or around an edge. The smaller the opening (closer to the wavelength), the MORE the diffraction.</p>
+<p><b>Pattern:</b> Bigger opening relative to wavelength = small diffraction; opening close to wavelength = large diffraction.</p>
+</div>
+<div class="topicnote">
+<h5>1.12 Interference &amp; Superposition</h5>
+<p>When two waves meet, the displacements <b>add algebraically</b> (Principle of Superposition).</p>
+<table class="sg-table">
+<tr><th>Type</th><th>Phase</th><th>Result</th></tr>
+<tr><td><b>Constructive</b></td><td>In phase (0°)</td><td>Bigger amplitude: crest + crest = taller crest</td></tr>
+<tr><td><b>Destructive</b></td><td>180° out of phase</td><td>Smaller amplitude: crest + equal trough = zero (cancellation)</td></tr>
+</table>
+<p><b>Standing waves</b> = two waves of same frequency &amp; amplitude moving in opposite directions interfere to make a stationary pattern of nodes (no motion, fully destructive) and antinodes (max motion, fully constructive).</p>
+</div>
+<div class="topicnote">
+<h5>1.13 The EM Spectrum &amp; visible light wavelengths</h5>
+<p>Ordered low frequency / long wavelength → high frequency / short wavelength:</p>
+<p style="font-family:'Comfortaa',monospace;font-size:11.5px;color:var(--text);background:var(--bg3);padding:.5rem .7rem;border-radius:4px;letter-spacing:.04em">Radio → Microwave → Infrared → <b>Visible</b> → UV → X-ray → Gamma</p>
+<p><b>Visible light wavelengths (memorize these ranges):</b></p>
+<div class="roygbiv">
+<div style="background:#ff0040">R<br/>~700nm</div>
+<div style="background:#ff7f00">O<br/>~620nm</div>
+<div style="background:#ffeb00">Y<br/>~580nm</div>
+<div style="background:#00d04c">G<br/>~530nm</div>
+<div style="background:#00b4ff">B<br/>~470nm</div>
+<div style="background:#5b3aff;color:#fff">I<br/>~445nm</div>
+<div style="background:#9f00ff;color:#fff">V<br/>~400nm</div>
+</div>
+<p style="font-size:13px"><b>Conversion shortcut:</b> 5.0 × 10⁻⁷ m = 500 nm = <b>green</b>. 4.0 × 10⁻⁷ m = 400 nm = violet. 7.0 × 10⁻⁷ m = 700 nm = red. <b>(This is exactly where you lost a point on the Light Quiz Q3.)</b></p>
+</div>
+<div class="topicnote">
+<h5>1.14 Polarization</h5>
+<p>Light is normally <b>unpolarized</b>: its electric field vibrates in all directions perpendicular to travel. A <b>polarizing filter</b> (like polarized sunglasses) only lets through vibrations in one plane, blocking glare.</p>
+<p><b>Pattern:</b> Polarization is proof that light is a <b>transverse</b> wave (longitudinal waves like sound cannot be polarized).</p>
+</div>
+<div class="topicnote">
+<h5>1.15 Dispersion</h5>
+<p>White light passing through a prism splits into colors because <b>different wavelengths refract by different amounts</b>. Higher frequency (violet/blue) → bends MORE because it has a slightly higher index of refraction in glass. Lower frequency (red) → bends LEAST. This is what creates rainbows.</p>
+</div>
+<div class="topicnote">
+<h5>1.16 Doppler Effect (bonus: short answer favorite)</h5>
+<p>If source &amp; observer move <b>toward</b> each other → observed frequency <b>increases</b> (blueshift for light, higher pitch for sound). If moving <b>apart</b> → observed frequency <b>decreases</b> (redshift, lower pitch). The actual frequency emitted by the source never changes.</p>
+</div>
+<div class="lesson-mistakes">
+<h5 class="lm-title">⚡ Common Mistakes &amp; Exam Tips</h5>
+<ul class="lm-list">
+<li>Read the question carefully students often answer what they think the question is asking rather than what it actually asks.</li>
+<li>Always show your reasoning or cite specific evidence. Vague answers or unsupported claims earn zero points on AP exams.</li>
+<li>Exam tip: Eliminate obviously wrong answers first in MCQs. Look for absolutes (always, never, all, none) these are often wrong.</li>
+</ul>
+</div></div>
+</section>
+<!-- ─────────────────────────── SECTION 2 ─────────────────────────── -->
+<section class="lesson" id="section2">
+<div class="lesson-head"><label>Section 2</label><h4>Formula Sheet With Meaning</h4></div>
+<div class="lesson-body">
+<div class="sg-formula">
+<h6>Wave speed equation</h6>
+<p style="font-size:16px;color:var(--text)">\[ v = f\lambda \]</p>
+<p class="vars"><b>v</b> = wave speed (m/s), <b>f</b> = frequency (Hz), <b>λ</b> = wavelength (m)</p>
+<p class="use">Use whenever you have any two of speed/frequency/wavelength and need the third. The single most-tested equation.</p>
+</div>
+<div class="sg-formula">
+<h6>Period ↔ Frequency</h6>
+<p style="font-size:16px;color:var(--text)">\[ T = \dfrac{1}{f}, \quad f = \dfrac{1}{T} \]</p>
+<p class="vars"><b>T</b> = period (s), <b>f</b> = frequency (Hz)</p>
+<p class="use">Use whenever the question gives period and asks for frequency (or vice versa). Also: f = (number of waves) / (time in seconds).</p>
+</div>
+<div class="sg-formula">
+<h6>Index of refraction</h6>
+<p style="font-size:16px;color:var(--text)">\[ n = \dfrac{c}{v} \quad\Longleftrightarrow\quad v = \dfrac{c}{n} \]</p>
+<p class="vars"><b>n</b> = index of refraction (unitless), <b>c</b> = 3.00 × 10⁸ m/s, <b>v</b> = speed of light in the material (m/s)</p>
+<p class="use">Use to find the speed of light in any material given its n, or to find n given v. Rearrange depending on what's asked.</p>
+</div>
+<div class="sg-formula">
+<h6>Snell's Law (refraction)</h6>
+<p style="font-size:16px;color:var(--text)">\[ n_1 \sin\theta_1 = n_2 \sin\theta_2 \]</p>
+<p class="vars"><b>n₁, n₂</b> = indices of the two media, <b>θ₁</b> = angle of incidence (from normal), <b>θ₂</b> = angle of refraction (from normal)</p>
+<p class="use">Use any time a light ray crosses a boundary between two materials. Always measure angles from the normal. Subscript 1 = side the light starts on.</p>
+</div>
+<div class="sg-formula">
+<h6>Snell's Law: speed and wavelength forms</h6>
+<p style="font-size:16px;color:var(--text)">\[ \dfrac{\sin\theta_1}{\sin\theta_2} = \dfrac{n_2}{n_1} = \dfrac{v_1}{v_2} = \dfrac{\lambda_1}{\lambda_2} \]</p>
+<p class="vars">All four ratios are equal: pick whichever pair the question gives you.</p>
+<p class="use">Use when the problem gives you speeds or wavelengths in the two media instead of indices.</p>
+</div>
+<div class="sg-formula">
+<h6>Law of Reflection</h6>
+<p style="font-size:16px;color:var(--text)">\[ \theta_i = \theta_r \]</p>
+<p class="vars"><b>θᵢ</b> = angle of incidence, <b>θᵣ</b> = angle of reflection (both from normal)</p>
+<p class="use">Use any time a ray bounces off a mirror or surface. The two angles are always equal.</p>
+</div>
+<div class="sg-formula">
+<h6>Critical Angle</h6>
+<p style="font-size:16px;color:var(--text)">\[ \sin\theta_c = \dfrac{n_2}{n_1} \quad (n_1 &gt; n_2) \]</p>
+<p class="vars"><b>θ_c</b> = critical angle, <b>n₁</b> = incident medium (the denser one), <b>n₂</b> = the less dense medium</p>
+<p class="use">Use to find the cutoff angle above which Total Internal Reflection occurs. ONLY valid when going from denser → less dense.</p>
+</div>
+<div class="lesson-mistakes">
+<h5 class="lm-title">⚡ Common Mistakes &amp; Exam Tips</h5>
+<ul class="lm-list">
+<li>Read the question carefully students often answer what they think the question is asking rather than what it actually asks.</li>
+<li>Always show your reasoning or cite specific evidence. Vague answers or unsupported claims earn zero points on AP exams.</li>
+<li>Exam tip: Eliminate obviously wrong answers first in MCQs. Look for absolutes (always, never, all, none) these are often wrong.</li>
+</ul>
+</div></div>
+</section>
+<!-- ─────────────────────────── SECTION 3 ─────────────────────────── -->
+<section class="lesson" id="section3">
+<div class="lesson-head"><label>Section 3</label><h4>Patterns to Recognize</h4></div>
+<div class="lesson-body">
+<div class="sg-callout"><b>Pattern 1: Frequency &amp; wavelength trade-off.</b> If wave speed is constant (same medium), then \(f \uparrow\) means \(\lambda \downarrow\), and \(f \downarrow\) means \(\lambda \uparrow\). They're inversely proportional. The product is fixed.</div>
+<div class="sg-callout"><b>Pattern 2: Frequency NEVER changes when a wave changes mediums.</b> Frequency is set by the source. What changes is speed AND wavelength (both either grow or shrink together). So \(\lambda\) scales with \(v\): faster medium → longer wavelength.</div>
+<div class="sg-callout"><b>Pattern 3: Speed-medium link.</b> Light slows down in denser materials. Denser = higher n = slower. (Sound is the OPPOSITE: sound is faster in denser materials. Don't mix these up.)</div>
+<div class="sg-callout"><b>Pattern 4: Refraction direction.</b> Slower side → bends TOWARD normal. Faster side → bends AWAY from normal. The angle on the slower side is always the smaller angle.</div>
+<div class="sg-callout"><b>Pattern 5: "Same n on both sides → straight line."</b> If the question shows i = r and asks what the second medium could be, look for the one with the SAME index of refraction as the first. (Light Quiz Q5: corn oil n=1.47, glycerol n=1.47 → answer is glycerol.)</div>
+<div class="sg-callout"><b>Pattern 6: Constructive vs destructive interference test.</b> Two waves' displacements ADD. If both are positive (crest meets crest) → tall positive. If equal &amp; opposite (crest meets equal trough) → zero. The math is just arithmetic at each point.</div>
+<div class="sg-callout"><b>Pattern 7: Phase relationships.</b> 0° apart = in phase. 90° = quarter wavelength apart. 180° = half wavelength apart (always opposite direction of motion). 360° = full wavelength = in phase again.</div>
+<div class="sg-callout"><b>Pattern 8: Nodes and antinodes.</b> Node = zero displacement, always destructive. Antinode = max displacement, alternates between fully constructive both ways. In a standing wave diagram, nodes are the "pinched" spots, antinodes are the bellies.</div>
+<div class="sg-callout"><b>Pattern 9: Pulses transfer energy only.</b> Whenever you see "a wave/pulse traveled… it transferred ___?" the answer is ENERGY ONLY. Mass never moves with a wave.</div>
+<div class="sg-callout"><b>Pattern 10: Particle direction in a transverse wave.</b> For a wave moving RIGHT: look at the wave shape <b>just to the LEFT</b> of the particle. That's where the particle is heading next. If left of the particle the wave is higher → particle moves UP. If left of the particle the wave is lower → particle moves DOWN. (This is exactly the rule you missed on Waves Q8.)</div>
+<div class="sg-callout"><b>Pattern 11: Mechanical needs medium; EM doesn't.</b> "Can it travel through space/vacuum?" → only EM (light, radio, etc.) can. Sound, water waves, springs all need matter.</div>
+<div class="sg-callout"><b>Pattern 12: Polarization = transverse only.</b> If a question mentions sunglasses, glare, or polarizing filters → answer is polarization. Polarization is ONLY possible for transverse waves (proof light is transverse).</div>
+<div class="sg-callout"><b>Pattern 13: Diffraction increases as opening shrinks.</b> Bigger opening → less spread. Opening size near wavelength → biggest spread.</div>
+<div class="sg-callout"><b>Pattern 14: Dispersion = wavelength-dependent refraction.</b> White light splits into colors because each color has a different index of refraction in glass. Violet bends most, red bends least.</div>
+<div class="sg-callout"><b>Pattern 15: Critical angle only when going dense → less dense.</b> If a question gives you a "find critical angle" prompt with light going from a low-n medium into a high-n medium, that's a trick: no critical angle exists in that direction.</div>
+<div class="lesson-mistakes">
+<h5 class="lm-title">⚡ Common Mistakes &amp; Exam Tips</h5>
+<ul class="lm-list">
+<li>Read the question carefully students often answer what they think the question is asking rather than what it actually asks.</li>
+<li>Always show your reasoning or cite specific evidence. Vague answers or unsupported claims earn zero points on AP exams.</li>
+<li>Exam tip: Eliminate obviously wrong answers first in MCQs. Look for absolutes (always, never, all, none) these are often wrong.</li>
+</ul>
+</div></div>
+</section>
+<!-- ─────────────────────────── SECTION 4 ─────────────────────────── -->
+<section class="lesson" id="section4">
+<div class="lesson-head"><label>Section 4</label><h4>Your Quiz Mistakes: Fix These First</h4></div>
+<div class="lesson-body">
+<div class="sg-mistake">
+<h5>Waves Quiz #1: Q8: Particle direction in a transverse wave</h5>
+<p><span class="yours">Your answer: B (up)</span>    <span class="actual">Correct: D (down)</span></p>
+<p><b>The setup:</b> A transverse wave was traveling to the RIGHT. Particle A was shown sitting in the lower half of the wave (on the downslope side / heading toward a trough). A dashed line showed where the wave shape would be a moment later.</p>
+<p><b>Why D (down) is correct:</b> For a wave moving right, the wave shape shifts to the right over time: so the future position of any particle takes on the value the wave currently has just to the LEFT of that particle. Just to the left of A, the wave is even lower (deeper in the trough). Therefore A is about to move DOWN, not up.</p>
+<p><b>The bulletproof rule:</b> "Wave moves right → look LEFT to predict particle motion." (Wave moves left → look RIGHT.) Whatever the wave looks like on the side the wave is coming FROM is where the particle is heading next.</p>
+<div class="sg-callout sg-win"><b>Mental model:</b> Imagine the wave shape sliding to the right like a strip of film. The dot stays at one x-position, but the strip slides past it. The next height it'll have is whatever was just to its left.</div>
+</div>
+<div class="sg-mistake">
+<h5>Light Quiz: Q3: Color of 5.0 × 10⁻⁷ m light</h5>
+<p><span class="yours">Your answer: D (violet)</span>    <span class="actual">Correct: A (green)</span></p>
+<p><b>The math:</b> 5.0 × 10⁻⁷ m = 500 nm. The visible spectrum runs roughly 400 nm (violet) to 700 nm (red). 500 nm sits squarely in the GREEN region (~490 to 570 nm).</p>
+<p><b>Why violet is wrong:</b> Violet is at the SHORT-wavelength end (~400 nm = 4.0 × 10⁻⁷ m). You confused "small number in scientific notation" with "violet."</p>
+<p><b>Memorize these three anchor points:</b></p>
+<ul style="margin-left:1.2rem;color:var(--text2);font-size:13px;line-height:1.8">
+<li>4 × 10⁻⁷ m = 400 nm = <b>violet</b></li>
+<li>5 × 10⁻⁷ m = 500 nm = <b>green</b></li>
+<li>7 × 10⁻⁷ m = 700 nm = <b>red</b></li>
+</ul>
+<p>Anything in between, slot it in: 600 nm ≈ orange/yellow, 450 nm ≈ blue.</p>
+</div>
+<div class="sg-mistake">
+<h5>Light Quiz: Q7: Light from alcohol into flint glass</h5>
+<p><span class="yours">Your answer: C (speed increases, bends toward normal)</span>    <span class="actual">Correct: D (speed decreases, bends toward normal)</span></p>
+<p><b>The setup:</b> Light goes from alcohol (n = 1.36) into flint glass (n = 1.66).</p>
+<p><b>Two-step decision tree (use this every time):</b></p>
+<ol style="margin-left:1.2rem;color:var(--text2);font-size:13px;line-height:1.8">
+<li><b>Compare the n values.</b> Going to a HIGHER n means going to a denser/slower medium. (1.66 &gt; 1.36 → light slows DOWN.)</li>
+<li><b>Apply the bending rule.</b> Slower → bends TOWARD normal.</li>
+</ol>
+<p>So the correct combo is: <b>speed DOWN + bends TOWARD normal</b>. You got the direction right but the speed wrong: you swapped which side was slower.</p>
+<div class="sg-callout sg-win"><b>Pattern lock:</b> Speed direction and bending direction always pair the same way: "decreases &amp; toward" together, OR "increases &amp; away" together. You can never have "increases &amp; toward" or "decreases &amp; away." That immediately eliminates two of the four answer choices.</div>
+</div>
+<div class="sg-mistake">
+<h5>Waves Quiz #1: Q4 (close call): Reading amplitude from a diagram</h5>
+<p>The diagram labeled 0.20 m vertical and 1.5 m horizontal. The 0.20 m label was the distance from the equilibrium line to a crest → that IS amplitude = 0.20 m. The 1.5 m spanned 2.5 wavelengths → λ = 0.60 m. <b>Correct answer: B</b>.</p>
+<p><b>Trap to avoid:</b> Amplitude = (rest line) → (crest). NOT trough-to-crest (that would be 2 × amplitude). If a diagram shows the full peak-to-peak distance, divide by 2.</p>
+</div>
+<div class="sg-mistake">
+<h5>General quiz strategy fixes</h5>
+<p><b>1. Always look at the reference table values for index of refraction before guessing.</b> The NYS table is provided; use it to look up exact n for water (1.33), alcohol (1.36), corn oil (1.47), glycerol (1.47), Lucite (1.50), crown glass (1.52), flint glass (1.66), zircon (1.92), diamond (2.42).</p>
+<p><b>2. Always measure angles from the NORMAL.</b> If the diagram labels the angle between the ray and the surface, that's the COMPLEMENT: subtract from 90° to get the angle from normal.</p>
+<p><b>3. When two answer choices have the same direction-of-bending, look at the speed condition.</b> Often the test gives all four combos (speed↑ + away, speed↑ + toward, speed↓ + away, speed↓ + toward). Only TWO are physically possible: "↑ + away" and "↓ + toward." Eliminate the impossible ones first.</p>
+</div>
+<div class="lesson-mistakes">
+<h5 class="lm-title">⚡ Common Mistakes &amp; Exam Tips</h5>
+<ul class="lm-list">
+<li>Read the question carefully students often answer what they think the question is asking rather than what it actually asks.</li>
+<li>Always show your reasoning or cite specific evidence. Vague answers or unsupported claims earn zero points on AP exams.</li>
+<li>Exam tip: Eliminate obviously wrong answers first in MCQs. Look for absolutes (always, never, all, none) these are often wrong.</li>
+</ul>
+</div></div>
+</section>
+<!-- ─────────────────────────── SECTION 5 ─────────────────────────── -->
+<section class="lesson" id="section5">
+<div class="lesson-head"><label>Section 5</label><h4>Teacher-Style Practice (Scarpulla format)</h4></div>
+<div class="lesson-body">
+<p style="font-size:13px;color:var(--text2);margin-bottom:.8rem">Format mirrors your actual quizzes: short MCQs with a diagram reference, mixed conceptual + calculation, NYS-style answer choices. Try each before clicking the solution.</p>
+<div class="sg-q">
+<div class="qnum">Practice Q1, diagram-style</div>
+<div class="qtext">A transverse wave is traveling to the LEFT. Point P sits on the upslope of a crest (rising part of the wave). In the next instant, point P will move:</div>
+<ul class="qopts">
+<li>A) left</li>
+<li>B) right</li>
+<li>C) up</li>
+<li>D) down</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>C: up.</b> Wave moves LEFT, so look at the wave just to the RIGHT of P to predict its next position. To P's right the wave is higher (toward the crest), so P's next height is higher → P moves UP. The "look opposite to wave direction" rule is universal.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q2, v = fλ calculation</div>
+<div class="qtext">A periodic wave has a wavelength of 0.40 m and a frequency of 5.0 Hz. What is its speed?</div>
+<ul class="qopts">
+<li>A) 0.080 m/s</li>
+<li>B) 2.0 m/s</li>
+<li>C) 12.5 m/s</li>
+<li>D) 20. m/s</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>B: 2.0 m/s.</b> v = fλ = (5.0 Hz)(0.40 m) = 2.0 m/s.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q3, Period from wave count</div>
+<div class="qtext">Six complete waves pass a fixed point in 3.0 seconds. What is the period of these waves?</div>
+<ul class="qopts">
+<li>A) 0.50 s</li>
+<li>B) 2.0 s</li>
+<li>C) 3.0 s</li>
+<li>D) 18 s</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>A: 0.50 s.</b> Frequency = 6 waves / 3.0 s = 2.0 Hz. Period T = 1/f = 1/2.0 = 0.50 s. Easier shortcut: T = total time / # of waves = 3.0/6 = 0.50 s.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q4, Index of refraction</div>
+<div class="qtext">Light travels through a transparent material at 2.00 × 10⁸ m/s. What is the absolute index of refraction of this material?</div>
+<ul class="qopts">
+<li>A) 0.667</li>
+<li>B) 1.00</li>
+<li>C) 1.50</li>
+<li>D) 6.00 × 10¹⁶</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>C: 1.50.</b> n = c/v = (3.00 × 10⁸)/(2.00 × 10⁸) = 1.50. (This would be Lucite or crown glass.)</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q5, Snell's Law</div>
+<div class="qtext">A monochromatic light ray traveling in air strikes the surface of water (n = 1.33) at an angle of incidence of 30°. What is the angle of refraction?</div>
+<ul class="qopts">
+<li>A) 22°</li>
+<li>B) 30°</li>
+<li>C) 40°</li>
+<li>D) 48°</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>A: 22°.</b> n₁ sin θ₁ = n₂ sin θ₂. (1.00)sin(30°) = (1.33)sin(θ₂). sin(θ₂) = 0.500/1.33 = 0.376. θ₂ = arcsin(0.376) ≈ 22°. Sanity: going to denser medium → angle gets smaller (bends toward normal). ✓</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q6, Color from wavelength</div>
+<div class="qtext">Light has a wavelength in air of 6.5 × 10⁻⁷ m. This light is most likely:</div>
+<ul class="qopts">
+<li>A) violet</li>
+<li>B) green</li>
+<li>C) red/orange</li>
+<li>D) infrared</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>C: red/orange.</b> 6.5 × 10⁻⁷ m = 650 nm. Visible: 400 nm violet → 700 nm red. 650 nm is in the red-orange range.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q7, Speed and direction at boundary</div>
+<div class="qtext">A light ray passes from crown glass (n = 1.52) into water (n = 1.33). What happens to the ray?</div>
+<ul class="qopts">
+<li>A) Speed decreases and ray bends toward the normal</li>
+<li>B) Speed decreases and ray bends away from the normal</li>
+<li>C) Speed increases and ray bends toward the normal</li>
+<li>D) Speed increases and ray bends away from the normal</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>D: speed increases &amp; bends AWAY from normal.</b> Going to a lower n (1.33 &lt; 1.52) means less dense → light SPEEDS UP. And faster medium → bends AWAY from normal. Remember the pair: "↑ speed + away" always go together; "↓ speed + toward" always go together.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q8, Critical angle</div>
+<div class="qtext">What is the critical angle for light traveling from diamond (n = 2.42) into air?</div>
+<ul class="qopts">
+<li>A) 24°</li>
+<li>B) 42°</li>
+<li>C) 49°</li>
+<li>D) 66°</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>A: 24°.</b> sin θ_c = n₂/n₁ = 1.00/2.42 = 0.413. θ_c = arcsin(0.413) ≈ 24.4°. Diamond has the smallest critical angle of common materials, which is why diamonds sparkle: most light gets TIR'd inside.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q9, Reflection convention</div>
+<div class="qtext">A light ray strikes a plane mirror, making an angle of 25° with the mirror's surface. What is the angle of reflection?</div>
+<ul class="qopts">
+<li>A) 25°</li>
+<li>B) 50°</li>
+<li>C) 65°</li>
+<li>D) 90°</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>C: 65°.</b> Angle with the surface = 25°, so the angle from the NORMAL is 90° − 25° = 65°. By law of reflection θᵢ = θᵣ, the angle of reflection (from normal) is also 65°. This convention trap is exactly why Light Q9 is worth double-checking.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q10, Phenomenon identification</div>
+<div class="qtext">Parallel light rays strike a rough, uneven surface and scatter in many different directions. This phenomenon is best described as:</div>
+<ul class="qopts">
+<li>A) refraction</li>
+<li>B) regular reflection</li>
+<li>C) diffuse reflection</li>
+<li>D) diffraction</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>C: diffuse reflection.</b> Rough surface still obeys θᵢ = θᵣ at each tiny point, but the normals at each point are tilted differently → reflected rays scatter. Refraction would require crossing into a new medium; diffraction requires an opening or edge.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q11, Standing wave node count</div>
+<div class="qtext">A standing wave between two walls shows 4 "loops" (antinodes) between the walls. How many nodes does the standing wave have (including the two endpoints at the walls)?</div>
+<ul class="qopts">
+<li>A) 3</li>
+<li>B) 4</li>
+<li>C) 5</li>
+<li>D) 8</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>C: 5.</b> Each loop is bounded by two nodes; 4 loops require 5 nodes total. Walls are always nodes (fixed ends can't move).</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q12, Wave type analogy</div>
+<div class="qtext">EM waves are to transverse waves as sound waves are to:</div>
+<ul class="qopts">
+<li>A) longitudinal waves</li>
+<li>B) transverse waves</li>
+<li>C) standing waves</li>
+<li>D) mechanical waves only</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>A: longitudinal waves.</b> Light is the canonical transverse wave, sound is the canonical longitudinal wave.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q13, Interference</div>
+<div class="qtext">Two waves with equal amplitudes and frequencies meet 180° out of phase. The result is:</div>
+<ul class="qopts">
+<li>A) constructive interference; amplitude doubles</li>
+<li>B) destructive interference; amplitude becomes zero</li>
+<li>C) diffraction</li>
+<li>D) resonance</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>B: destructive interference, amplitude zero.</b> Equal-and-opposite waves cancel completely. This is how noise-cancelling headphones work.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q14, Frequency of microwaves</div>
+<div class="qtext">A microwave has a wavelength of 1.5 × 10⁻² m in vacuum. What is its frequency?</div>
+<ul class="qopts">
+<li>A) 2.0 × 10¹⁰ Hz</li>
+<li>B) 4.5 × 10⁶ Hz</li>
+<li>C) 5.0 × 10⁻¹¹ Hz</li>
+<li>D) 4.5 × 10¹⁰ Hz</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>A: 2.0 × 10¹⁰ Hz.</b> f = c/λ = (3.00 × 10⁸)/(1.5 × 10⁻²) = 2.0 × 10¹⁰ Hz.</p></details>
+</div>
+<div class="sg-q">
+<div class="qnum">Practice Q15, Vacuum traveler</div>
+<div class="qtext">Which of the following can travel through a vacuum?</div>
+<ul class="qopts">
+<li>A) sound waves</li>
+<li>B) ocean waves</li>
+<li>C) light waves</li>
+<li>D) waves on a spring</li>
+</ul>
+<details><summary>Reveal answer</summary><p><b>C: light waves.</b> Only EM waves can travel through vacuum. The other three all require a medium (matter).</p></details>
+</div>
+<div class="lesson-mistakes">
+<h5 class="lm-title">⚡ Common Mistakes &amp; Exam Tips</h5>
+<ul class="lm-list">
+<li>Describing WHAT the work shows (iconographic content) without analyzing HOW formal choices (composition, color, scale, medium) create meaning.</li>
+<li>Forgetting to mention the patron and function most art before the 19th century was commissioned for specific purposes (religious devotion, political legitimacy, funerary use).</li>
+<li>Exam tip: Use FRAME for any unfamiliar work: Function (what was it for?), Representation (what does it show and how?), Audience/Patron (who made it, for whom?), Materials/Methods, Environments/Context.</li>
+</ul>
+</div></div>
+</section>
+<!-- ─────────────────────────── SECTION 6 ─────────────────────────── -->
+<section class="lesson" id="section6">
+<div class="lesson-head"><label>Section 6</label><h4>Quick Review: Night Before / Morning Of</h4></div>
+<div class="lesson-body">
+<div class="sg-callout sg-gold"><b>The night before.</b> Read Sections 1, 3, and 4 once through. Re-read your three mistake fixes (transverse particle direction, color wavelengths, refraction direction pairing). Sleep.</div>
+<div class="sg-callout sg-gold"><b>The morning of.</b> Do this 8-point speed check in your head:</div>
+<ol class="sg-checklist">
+<li><b>v = fλ.</b> And T = 1/f. Can solve for any one from the others.</li>
+<li><b>Light = transverse, EM. Sound = longitudinal, mechanical.</b> Only EM travels through vacuum.</li>
+<li><b>n = c/v.</b> Bigger n → slower light → more optically dense.</li>
+<li><b>Snell: n₁ sin θ₁ = n₂ sin θ₂.</b> Angles from normal.</li>
+<li><b>Slow side bends TOWARD normal; fast side bends AWAY.</b> Speed and direction always paired: "↓ speed + toward" or "↑ speed + away."</li>
+<li><b>Color wavelengths:</b> 400 nm violet, 500 nm green, 700 nm red.</li>
+<li><b>Particle direction in transverse wave:</b> look the OPPOSITE way the wave is moving.</li>
+<li><b>Amplitude = rest line → peak,</b> not peak-to-peak. Frequency NEVER changes when wave changes mediums.</li>
+</ol>
+<p style="font-size:13px;color:var(--text2);margin-top:.8rem">If you can recite all 8 of those without looking, you're set up for 10/10. If any feel shaky, hit just that section in the guide one more time.</p>
+<div class="lesson-mistakes">
+<h5 class="lm-title">⚡ Common Mistakes &amp; Exam Tips</h5>
+<ul class="lm-list">
+<li>Read the question carefully students often answer what they think the question is asking rather than what it actually asks.</li>
+<li>Always show your reasoning or cite specific evidence. Vague answers or unsupported claims earn zero points on AP exams.</li>
+<li>Exam tip: Eliminate obviously wrong answers first in MCQs. Look for absolutes (always, never, all, none) these are often wrong.</li>
+</ul>
+</div></div>
+</section>
+<!-- ─────────────────────────── SECTION 7 ─────────────────────────── -->
+<section class="lesson" id="section7">
+<div class="lesson-head"><label>Section 7</label><h4>Short Answer Question Checklist</h4></div>
+<div class="lesson-body">
+<p style="font-size:13.5px;color:var(--text2);margin-bottom:.7rem">For every short answer, run through this list before moving on. If any box is unchecked, your answer is incomplete.</p>
+<ol class="sg-checklist">
+<li>Did I <b>define the key physics concept</b> the question is asking about (e.g., "refraction is the bending of light when…")?</li>
+<li>Did I <b>identify the correct variables</b> or the specific wave/light behavior (frequency, wavelength, n, angle…)?</li>
+<li>Did I <b>explain the cause-and-effect relationship</b>: what causes what, and why?</li>
+<li>Did I <b>connect the answer back to the pattern</b> in the question (diagram, value, scenario)?</li>
+<li>Did I <b>include the correct formula</b> if math is required (write it BEFORE plugging in)?</li>
+<li>Did I <b>explain what happens when a variable increases or decreases</b> (the directional pattern)?</li>
+<li>Did I use <b>correct physics vocabulary</b> (normal, refraction, amplitude, etc.: not "the line" or "bending")?</li>
+<li>Did I <b>answer the exact question asked</b> (not a related but different question)?</li>
+<li>Did I <b>avoid vague phrases</b> like "it changes" without saying HOW or WHY?</li>
+<li>Did I <b>include units</b> on every numerical answer?</li>
+</ol>
+<h5 style="font-family:'Comfortaa',monospace;font-size:11px;color:var(--AC);letter-spacing:.1em;text-transform:uppercase;margin:1.4rem 0 .6rem">Model short-answer responses</h5>
+<div class="sg-model">
+<span class="label">Model 1: "Why does light bend when it enters a new medium?"</span>
+<p>Light bends because its <b>speed changes</b> when it enters a medium with a different optical density. This change in speed is what we call <b>refraction</b>. Specifically, when light passes from a less dense medium (lower n) to a denser medium (higher n), it slows down (\(v = c/n\)) and bends <b>toward the normal</b>. When light passes from denser to less dense, it speeds up and bends <b>away from the normal</b>. The direction of bending is governed by <b>Snell's Law</b>: \(n_1 \sin\theta_1 = n_2 \sin\theta_2\), where angles are measured from the normal.</p>
+<p style="margin-top:.4rem;color:var(--text3);font-size:12px">✓ Defines refraction. ✓ Cause-and-effect (speed change → bending). ✓ Both directions explained. ✓ Formula included. ✓ Correct vocabulary. ✓ Answers the "why" directly.</p>
+</div>
+<div class="sg-model">
+<span class="label">Model 2: "Explain what happens to the wavelength of a wave when it slows down as it enters a new medium, assuming the frequency stays constant."</span>
+<p>Frequency is <b>set by the source</b>, so it does not change when the wave enters a new medium: only speed and wavelength change. From the wave-speed equation, \(v = f\lambda\), if \(f\) is constant then \(\lambda\) must be directly proportional to \(v\). Therefore, when the wave slows down (\(v\) decreases), the wavelength <b>decreases</b> in the same proportion. Example: if light enters water and its speed drops to 75% of its vacuum speed, the wavelength in water also becomes 75% of the vacuum wavelength.</p>
+<p style="margin-top:.4rem;color:var(--text3);font-size:12px">✓ States the key rule (frequency constant). ✓ Uses v = fλ formula. ✓ Explains directional pattern. ✓ Concrete example. ✓ Units implied correctly.</p>
+</div>
+<div class="sg-model">
+<span class="label">Model 3: "Explain the conditions required for Total Internal Reflection."</span>
+<p>Total Internal Reflection (TIR) occurs when light traveling through a material is completely reflected at the boundary instead of refracting out. Two conditions must both be met: <b>(1)</b> the light must be traveling from a <b>denser medium</b> (higher index of refraction) <b>into a less dense medium</b> (lower n), and <b>(2)</b> the angle of incidence must be <b>greater than the critical angle</b>, defined by \(\sin\theta_c = n_2/n_1\). If both conditions are met, no light refracts into the second medium and 100% of the light reflects back into the first medium, obeying the Law of Reflection (\(\theta_i = \theta_r\)). TIR is the principle behind fiber optic cables, where light traveling down the fiber's core continually reflects off the cladding boundary instead of leaking out.</p>
+<p style="margin-top:.4rem;color:var(--text3);font-size:12px">✓ Defines TIR. ✓ Lists BOTH required conditions explicitly. ✓ Formula for critical angle. ✓ Real-world application. ✓ Correct vocabulary throughout.</p>
+</div>
+<div class="sg-model">
+<span class="label">Model 4: "Describe the difference between constructive and destructive interference."</span>
+<p>Interference is the result of two waves meeting in the same medium, and the displacements of the two waves <b>add algebraically</b> at each point (the <b>Principle of Superposition</b>). <b>Constructive interference</b> happens when the two waves are <b>in phase</b> (0° apart): crest meets crest, trough meets trough: and the resulting amplitude is the <b>sum</b> of the two individual amplitudes, producing a larger wave. <b>Destructive interference</b> happens when the two waves are <b>180° out of phase</b>: crest meets trough: and the displacements <b>cancel</b>, producing a smaller wave (or zero amplitude if the two original waves had equal amplitudes). In a standing wave, the points of full destructive interference are called <b>nodes</b>; the points of full constructive interference are called <b>antinodes</b>.</p>
+<p style="margin-top:.4rem;color:var(--text3);font-size:12px">✓ Defines interference and superposition. ✓ Contrasts both types. ✓ Specifies phase relationship for each. ✓ Connects to nodes/antinodes. ✓ Explains what happens to amplitude.</p>
+</div>
+<div class="sg-model">
+<span class="label">Model 5: "A wave travels from a fast medium to a slow medium. Describe what happens to its frequency, wavelength, and speed."</span>
+<p>When a wave crosses from a faster medium into a slower one, its <b>speed decreases</b> (this is what causes refraction). Its <b>frequency stays the same</b> because frequency is set by the source and cannot change at a boundary. Using \(v = f\lambda\), if \(v\) decreases and \(f\) stays constant, then \(\lambda\) must also <b>decrease</b> proportionally. The wave's direction also changes: it <b>bends toward the normal</b> upon entering the slower medium.</p>
+<p style="margin-top:.4rem;color:var(--text3);font-size:12px">✓ Addresses all three variables (v, f, λ). ✓ Uses the formula to justify the wavelength change. ✓ States the key rule about frequency. ✓ Adds direction-of-bending as a bonus.</p>
+</div>
+<div class="lesson-mistakes">
+<h5 class="lm-title">⚡ Common Mistakes &amp; Exam Tips</h5>
+<ul class="lm-list">
+<li>Read the question carefully students often answer what they think the question is asking rather than what it actually asks.</li>
+<li>Always show your reasoning or cite specific evidence. Vague answers or unsupported claims earn zero points on AP exams.</li>
+<li>Exam tip: Eliminate obviously wrong answers first in MCQs. Look for absolutes (always, never, all, none) these are often wrong.</li>
+</ul>
+</div></div>
+</section>
+<div class="exit" style="margin-top:2rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem">
+<h5 style="font-family:'Comfortaa',monospace;font-size:11px;color:var(--AC);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem">Final note</h5>
+<p style="font-size:13.5px;color:var(--text2);line-height:1.75">You missed 3 questions total across both quizzes. Each had a specific, fixable cause: not "I don't get physics." The fixes are: (a) the look-opposite rule for transverse-wave particle motion, (b) memorizing 400/500/700 nm color anchors, (c) always pairing speed direction with bend direction. Drill those, run the Section 6 check the morning of, and 10/10 is on the table.</p>
+</div>
+</div>
+<div class="review-box">
+<h3 class="review-box-title">How well do you know this unit?</h3>
+<div class="review-stars" id="reviewStars-light-waves-personal-study-guide">
+<button class="star-btn" data-val="1" onclick="rateUnit('light-waves-personal-study-guide',1)">★</button>
+<button class="star-btn" data-val="2" onclick="rateUnit('light-waves-personal-study-guide',2)">★</button>
+<button class="star-btn" data-val="3" onclick="rateUnit('light-waves-personal-study-guide',3)">★</button>
+<button class="star-btn" data-val="4" onclick="rateUnit('light-waves-personal-study-guide',4)">★</button>
+<button class="star-btn" data-val="5" onclick="rateUnit('light-waves-personal-study-guide',5)">★</button>
+</div>
+<p class="review-label" id="reviewLabel-light-waves-personal-study-guide">Click a star to rate your confidence</p>
+</div><footer class="site-footer">
+<div class="f-brand">Five &amp; A+</div>
+<p class="trademark">AP® and Advanced Placement® are trademarks registered by the College Board, which is not affiliated with, and does not endorse, this site. Five &amp; A+ is an independent educational resource and is not affiliated with, endorsed by, or sponsored by the College Board.</p>
+<p class="f-sub">Free AP® &amp; College Review, Built by Arnav Sinha &amp; Yashwin Kandra</p>
+</footer><div class="lesson-nav-bar"><a class="lnb-btn lnb-prev" href="#" id="lnbPrev" style="visibility:hidden">← Previous Lesson</a><span class="lnb-course" id="lnbCourse">Light Waves Personal Study Guide</span><a class="lnb-btn lnb-next" href="#" id="lnbNext" style="visibility:hidden">Next Lesson →</a></div></body>
+</html>
