@@ -530,9 +530,13 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
   var nodeHalo = null, nodeCore = null;
   var bandTop = 0, lpBandH = 0;   /* band geometry; SVG is fixed and slid by -scrollY */
 
-  /* Text-bearing blocks the comet lane must never cross. We measure these
-     (not full-width band wrappers) to find true whitespace gutters. */
-  var LANE_SELS = '.mh-inner,.gateway,.lesson,.quiz-section,.dashboard,' +
+  /* Text-bearing blocks the comet lane must never cross. We measure these to
+     find true whitespace gutters. .page-wrap/.simple-layout are the universal
+     content columns on unit, course-overview AND review pages — measuring them
+     guarantees the path stays outside ALL page content (course pages put their
+     content in .overview-section/.review-section, which are narrower than the
+     wrapper, so the wrapper is the safe outer bound). */
+  var LANE_SELS = '.page-wrap,.simple-layout,.mh-inner,.gateway,.lesson,.quiz-section,.dashboard,' +
     '.research-spotlight,.h5-section,.unit-review-wrap,.hero-inner,.cc-grid,' +
     '.feat-grid,.how-grid,.cta-band,.about-builder,.sr-inner,.iqbank';
 

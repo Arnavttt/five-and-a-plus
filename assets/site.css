@@ -1215,7 +1215,7 @@ h5 { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter
    UNIT REVIEW VIDEO
    ══════════════════════════════════════════════════════════════════════════ */
 .unit-review-wrap {
-  max-width: 1080px;
+  max-width: 1000px;
   margin: 2.25rem auto 1.25rem;
   padding: 1.75rem 1.5rem 0;
   border-top: 1px solid var(--border);
