@@ -528,6 +528,7 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
   var NS = 'http://www.w3.org/2000/svg';
   var svg = null, glowEl = null, cometEl = null, pathLen = 0, cometLen = 0;
   var nodeHalo = null, nodeCore = null;
+  var bandTop = 0, lpBandH = 0;   /* band geometry; SVG is fixed and slid by -scrollY */
 
   /* Text-bearing blocks the comet lane must never cross. We measure these
      (not full-width band wrappers) to find true whitespace gutters. */
@@ -575,7 +576,8 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
      Decided from measured layout, not viewport width alone. */
   function decideMode() {
     var w = window.innerWidth, h = window.innerHeight;
-    if (w < 1100) return 'glow';                                   // no room beside content
+    if (document.documentElement.scrollWidth > w + 2) return 'glow'; // page already overflows → don't risk it
+    if (w < 1000) return 'glow';                                   // no room beside content
     var g = gutters(w);
     if (Math.max(g.left, g.right) < 130) return 'glow';           // content too wide → no lane
     if (document.documentElement.scrollHeight - h < h * 0.6) return 'glow'; // too short to travel
@@ -605,8 +607,10 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
   function buildLightPath() {
     /* Tear down any existing comet first. */
     if (svg) { svg.remove(); svg = cometEl = glowEl = nodeHalo = nodeCore = null; pathLen = 0; }
-    glowLayer.classList.toggle('fa-glow-strong', decideMode() !== 'full');
-    if (decideMode() !== 'full') return;   /* glow-only mode: no line at all */
+    var mode = decideMode();
+    document.body.dataset.lpMode = mode;
+    glowLayer.classList.toggle('fa-glow-strong', mode !== 'full');
+    if (mode !== 'full') return;   /* glow-only mode: no line at all */
 
     var w = window.innerWidth, h = window.innerHeight;
     var band = headerFooterBand();
@@ -656,9 +660,13 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
     svg.setAttribute('height', bandH);
     svg.setAttribute('viewBox', '0 0 ' + w + ' ' + bandH);
     svg.setAttribute('aria-hidden', 'true');
-    /* document-anchored: starts under the header, ends above the footer */
-    svg.style.top = band.top + 'px';
+    svg.style.pointerEvents = 'none';   /* decorative: never intercept input */
+    /* viewport-pinned: fixed at top:0, slid up by scroll so the band's current
+       slice is always on screen (keeps the comet/rail in view while scrolling) */
+    bandTop = band.top; lpBandH = bandH;
+    svg.style.top = '0px';
     svg.style.height = bandH + 'px';
+    svg.style.transform = 'translateY(' + (bandTop - window.scrollY) + 'px)';
 
     var defs = document.createElementNS(NS, 'defs');
     var grad = document.createElementNS(NS, 'linearGradient');
@@ -736,7 +744,7 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
     nodeCore.setAttribute('cx', pt.x); nodeCore.setAttribute('cy', pt.y);
   }
 
-  /* rAF-driven updates; comet position is eased toward the scroll target */
+  /* rAF-driven updates; comet position is eased toward the target */
   var target = 0, current = 0, raf = null;
 
   function progress() {
@@ -744,12 +752,23 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
     return docH > 0 ? Math.min(1, Math.max(0, window.scrollY / docH)) : 0;
   }
 
+  /* Target dashoffset that places the comet's glowing node near the viewport
+     centre (clamped to the band) — so the bright head is ALWAYS on screen
+     while scrolling, regardless of how the band maps to document height. */
+  function cometTarget() {
+    if (!pathLen) return 0;
+    var y0 = 14, y1 = lpBandH - 14;
+    var localY = window.scrollY + window.innerHeight * 0.45 - bandTop;
+    if (localY < y0) localY = y0; else if (localY > y1) localY = y1;
+    var fracY = (y1 > y0) ? (localY - y0) / (y1 - y0) : 0;
+    return -fracY * (pathLen - cometLen);
+  }
+
   function tick() {
     raf = null;
-    var p = progress();
-    bar.style.transform = 'scaleX(' + p + ')';
+    bar.style.transform = 'scaleX(' + progress() + ')';
     if (cometEl && pathLen) {
-      target = -p * (pathLen - cometLen);
+      target = cometTarget();
       if (reduced) {
         current = target;   /* no glide under reduced motion - direct set */
       } else {
@@ -762,7 +781,13 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
       if (current !== target) raf = requestAnimationFrame(tick);
     }
   }
-  function onScroll() { if (!raf) raf = requestAnimationFrame(tick); }
+  /* Slide the fixed SVG synchronously on every scroll event so the band always
+     tracks the document and the comet/rail stay in view, independent of the
+     rAF-driven easing (which can be throttled). */
+  function onScroll() {
+    if (svg) svg.style.transform = 'translateY(' + (bandTop - window.scrollY) + 'px)';
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
 
   window.addEventListener('scroll', onScroll, { passive: true });
   var rsT = null;
@@ -773,10 +798,11 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
       /* snap easing state to the new geometry so the comet doesn't glide
          across the screen after a resize/relayout */
       if (pathLen) {
-        current = target = -progress() * (pathLen - cometLen);
+        current = target = cometTarget();
         glowEl.setAttribute('stroke-dashoffset', current);
         cometEl.setAttribute('stroke-dashoffset', current);
         placeNode(current);
+        if (svg) svg.style.transform = 'translateY(' + (bandTop - window.scrollY) + 'px)';
       }
       onScroll();
     }, 150);

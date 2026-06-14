@@ -163,7 +163,12 @@ img, iframe { max-width: 100%; border: 0; }
 /* No light-path rails inside the hero: the light path lives only between the
    header and the footer (see #fa-lightpath); the hero keeps soft accent
    washes for depth. */
-.masthead::before { content: none; }
+/* Crisp course-accent signature bar across the top of every hero. */
+.masthead::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--AC), color-mix(in srgb, var(--AC) 15%, transparent));
+  pointer-events: none; z-index: 2;
+}
 .masthead::after { content: none; }
 
 /* thin centered reading column. NOTE: intentionally NOT positioned, so the
@@ -188,7 +193,7 @@ img, iframe { max-width: 100%; border: 0; }
   margin-bottom: 1.4rem;
 }
 .mh-breadcrumb a { color: var(--ink3); }
-.mh-breadcrumb a:hover { color: color-mix(in srgb, var(--AC) 75%, var(--ink)); }
+.mh-breadcrumb a:hover { color: color-mix(in srgb, var(--AC) 80%, var(--ink)); text-decoration: underline; }
 .mh-tag {
   display: inline-block;
   font-family: 'Inter', sans-serif;
@@ -202,7 +207,7 @@ img, iframe { max-width: 100%; border: 0; }
   padding: .3rem .95rem;
   border-radius: 999px;
   box-shadow: 0 6px 18px -12px var(--ACglow);
-  margin-bottom: 1.15rem;
+  margin-bottom: 1.2rem;
 }
 .mh-title {
   font-family: 'Inter', sans-serif;
@@ -210,7 +215,7 @@ img, iframe { max-width: 100%; border: 0; }
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.015em;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
   color: var(--ink);
   text-shadow: 0 2px 26px var(--ACglow);
 }
@@ -275,8 +280,11 @@ img, iframe { max-width: 100%; border: 0; }
    ══════════════════════════════════════════════════════════════════════════ */
 /* Contained reading width - centers content and opens side gutters so the
    light path has whitespace to live in (masthead stays full-bleed above). */
-.page-wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-.simple-layout { max-width: 1080px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+/* 1000px reading column opens side gutters wide enough for the light path to
+   live beside content (instead of falling back to glow-only) on standard
+   laptops/desktops. */
+.page-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.simple-layout { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
 /* ══════════════════════════════════════════════════════════════════════════
    COURSE OVERVIEW (legacy .course-overview + .overview-card structure)
@@ -561,6 +569,7 @@ img, iframe { max-width: 100%; border: 0; }
   background: var(--parchment2);
   padding: .75rem 1.1rem;
   border-bottom: 1px solid var(--border);
+  box-shadow: inset 0 3px 0 0 color-mix(in srgb, var(--AC) 60%, transparent);
   display: flex;
   align-items: center;
   gap: .7rem;
@@ -887,32 +896,32 @@ body.global-unmarked .iq.right,.iq.wrong             { display: none; }
   font-style: italic;
 }
 .f-brand {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--AC);
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--AC) 68%, var(--ink));
   font-style: normal;
   display: inline-block;
-  margin-bottom: .45rem;
-  letter-spacing: 0.05em;
+  margin-bottom: .65rem;
+  letter-spacing: 0.02em;
 }
 .trademark {
   font-family: 'Inter', sans-serif;
-  font-size: 11px;
+  font-size: 11.5px;
   font-style: normal;
-  color: rgba(232,223,197,0.5);
-  max-width: 640px;
-  margin: .35rem auto 0;
-  line-height: 1.8;
+  color: var(--ink2);
+  max-width: 680px;
+  margin: .4rem auto 0;
+  line-height: 1.75;
 }
 .f-sub {
   font-family: 'Inter', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 600;
-  color: rgba(232,223,197,0.35);
-  letter-spacing: 0.06em;
-  margin-top: .3rem;
+  color: var(--ink2);
+  letter-spacing: 0.04em;
+  margin-top: .55rem;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -1873,12 +1882,17 @@ mjx-container { overflow-x: auto; max-width: 100%; display: block; }
   pointer-events: none; will-change: transform;
 }
 
-/* Scroll light path - document-anchored in the side gutter; spans only the
-   stretch between the page header and the footer (top/height set inline by
-   app.js). Sits behind all content. */
+/* Scroll light path - viewport-pinned (position:fixed) and slid by scroll via a
+   translateY set in app.js, so the active comet/rail is always in view while
+   scrolling. Spans only the header-to-footer band. z-index:0 keeps it behind all
+   real content (promoted to z-index:1) and far below the nav (200). width:100% +
+   overflow:hidden guarantees it never creates horizontal scroll. */
 #fa-lightpath {
-  position: absolute; left: 0; top: 0; z-index: -1;
+  position: fixed; left: 0; top: 0;
+  width: 100%; overflow: hidden;
+  z-index: -1;            /* behind ALL content (above #fa-glow at -2 and the body canvas) */
   pointer-events: none;
+  contain: layout paint;
 }
 /* Continuous soft accent rail — makes the whole route (incl. its start, just
    below the header) visible; the comet rides on top as the bright highlight.
@@ -1904,6 +1918,9 @@ mjx-container { overflow-x: auto; max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   .fa-rv { opacity: 1; transform: none; transition: none; }
   .q-choice:hover:not(.picked) { transform: none; }
+  /* kill color/border transitions too (not just transforms) for motion-sensitive users */
+  .q-choice, .dash-card, .lesson, .quiz-section, .gateway, .iqbank,
+  .sr-submit, .mh-pill, .pill, .cc, .feat, .how-step { transition: none !important; }
   html { scroll-behavior: auto; }
 }
 
