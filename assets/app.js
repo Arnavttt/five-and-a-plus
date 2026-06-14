@@ -3,7 +3,7 @@
 
 /* ── Safe storage (private browsing fallback) ──────────────────────────────── */
 const _store = (function() {
-  try { _store.setItem('__test__','1'); _store.removeItem('__test__'); return window.localStorage; }
+  try { window.localStorage.setItem('__test__','1'); window.localStorage.removeItem('__test__'); return window.localStorage; }
   catch(e) {
     var m = {};
     return { getItem: function(k){return m[k]||null;}, setItem: function(k,v){m[k]=String(v);},
@@ -499,6 +499,73 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
     if ((base === c || base.indexOf(c + '-') === 0) && c.length > match.length) match = c;
   }
   if (match) document.body.dataset.course = match;
+})();
+
+/* ── Unit nav clarity + course-level "Continue learning" ─────────────────────
+   Reuses existing markup (no page regeneration): the .lesson-nav-bar already
+   links between UNITS (it was just labelled "Lesson"), and course-overview
+   pages carry an empty #continueBanner. Runs after course attribution so
+   document.body.dataset.course is set. */
+(function unitNavAndResume() {
+  function esc(s){ var x = document.createElement('div'); x.textContent = s || ''; return x.innerHTML; }
+
+  function run() {
+    /* Unit-page bottom bar: relabel Lesson->Unit and make the course name a
+       "back to course" link. (Runs on DOMContentLoaded because .lesson-nav-bar
+       is parsed after this script.) */
+    if (document.querySelector('.lesson-nav-bar')) {
+      ['lnbPrev', 'lnbNext'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && /\.html/.test(el.getAttribute('href') || '')) {
+          el.textContent = el.textContent.replace(/Lesson/i, 'Unit');
+        }
+      });
+      var courseEl = document.getElementById('lnbCourse');
+      var ov = document.querySelector('.period-pills .pill-overview');
+      if (courseEl && courseEl.tagName !== 'A' && ov && ov.getAttribute('href')) {
+        var a = document.createElement('a');
+        a.id = 'lnbCourse';
+        a.className = courseEl.className;
+        a.href = ov.getAttribute('href');
+        a.textContent = '↑ ' + (courseEl.textContent.trim() || 'Back to course');
+        courseEl.replaceWith(a);
+      }
+    }
+
+    var course = document.body.dataset.course;
+    if (!course) return;
+    var KEY = 'fa-resume-' + course;
+
+    if (/\/units\//.test(location.pathname)) {
+      /* remember this unit as the course's resume point */
+      var t = document.querySelector('.mh-title');
+      var tag = document.querySelector('.mh-tag');
+      try {
+        _store.setItem(KEY, JSON.stringify({
+          file: location.pathname.split('/').pop(),
+          title: (t && t.textContent.trim()) || 'this unit',
+          tag: (tag && tag.textContent.trim()) || ''
+        }));
+      } catch (e) {}
+    } else if (/-overview\.html$/.test(location.pathname)) {
+      /* Fill the existing (placeholder) Continue-learning banner with the last
+         unit visited for this course. The markup + dismiss button already exist;
+         we just set the link + reveal it. */
+      var banner = document.getElementById('continueBanner');
+      var link = document.getElementById('continueLink');
+      if (!banner || !link) return;
+      var raw = null; try { raw = _store.getItem(KEY); } catch (e) {}
+      if (!raw) return;
+      var d = null; try { d = JSON.parse(raw); } catch (e) {}
+      if (!d || !d.file) return;
+      link.href = '../units/' + d.file;
+      link.textContent = (d.tag ? d.tag.replace(/\s+of\s+.*/i, '') + ': ' : '') + d.title + ' →';
+      banner.style.display = 'flex';
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
 })();
 
 /* ── Motion layer (v6): progress bar + SVG light path + scroll reveals ─────

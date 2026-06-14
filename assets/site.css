@@ -1744,6 +1744,8 @@ mjx-container { overflow-x: auto; max-width: 100%; display: block; }
 }
 .lnb-btn:hover { background: color-mix(in srgb, var(--AC) 82%, black); }
 .lnb-course { font-size: .8rem; color: var(--text3); text-align: center; }
+a.lnb-course { text-decoration: none; transition: color .15s var(--ease); }
+a.lnb-course:hover { color: var(--AC); text-decoration: underline; }
 
 
 /* ── Lesson completion state ──────────────────────────────────────────────── */
