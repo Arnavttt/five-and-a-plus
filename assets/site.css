@@ -1239,12 +1239,17 @@ mjx-container { overflow-x: auto; max-width: 100%; display: block; }
 /* ══════════════════════════════════════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════════════════════════════════════ */
+/* Tablet & mobile: the breadcrumb chip goes (near) full-width as the centred
+   column approaches viewport width, so flow the menu toggle statically above it
+   (top-left, in normal flow) instead of absolutely overlapping it. Desktop keeps
+   the toggle in the masthead's left gutter. */
+@media(max-width:820px) {
+  .masthead .sidebar-toggle { position: static; display: block; width: fit-content; margin: 0 0 .85rem; }
+}
 @media(max-width:700px) {
   .topnav { padding: 0 .85rem; }
   .masthead { padding: 1.6rem 1.1rem 2rem; }
-  /* clear the absolute menu toggle so the breadcrumb never collides */
   .masthead:has(.sidebar-toggle) { padding-top: 1.4rem; }
-  .masthead:has(.sidebar-toggle) .mh-inner { padding-top: 2.5rem; }
   .page-wrap, .simple-layout { padding: 1rem 0.5rem 2.5rem; }
   .dash-card b { font-size: 1.1rem; }
   .quiz-body { padding: .9rem 1rem; }

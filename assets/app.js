@@ -516,9 +516,10 @@ document.addEventListener('DOMContentLoaded', initContinueBanner);
     if (document.querySelector('.lesson-nav-bar')) {
       ['lnbPrev', 'lnbNext'].forEach(function (id) {
         var el = document.getElementById(id);
-        if (el && /\.html/.test(el.getAttribute('href') || '')) {
-          el.textContent = el.textContent.replace(/Lesson/i, 'Unit');
-        }
+        if (!el) return;
+        var href = el.getAttribute('href') || '';
+        if (!href || href === '#') { el.style.visibility = 'hidden'; return; } // no neighbour: hide dead button, keep layout
+        el.textContent = el.textContent.replace(/Lesson/i, 'Unit');
       });
       var courseEl = document.getElementById('lnbCourse');
       var ov = document.querySelector('.period-pills .pill-overview');
